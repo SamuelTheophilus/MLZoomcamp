@@ -11,6 +11,7 @@ svc = bentoml.Service("credit_risk_classifier", runners= [model_runner])
 @svc.api(input=JSON(), output=JSON())
 def classify(application_data):
     vector = dv.transform(application_data)
+    print(f"This is the vector {vector}")
     prediction = model_runner.predict.run(vector)
     print(prediction)
     return {"status": "Approved"}
